@@ -1,0 +1,34 @@
+load '_Lecture_1_Homework_Data (1).mat'
+splitval = 4;
+
+%disp(data(1,2:3));
+ManipCondition = [];
+ControlCondition = [];
+
+%Check/Organize Condition Groups into seperate Matrices
+for i = 1:size(data)
+    if strcmp(data{i, 1}, 'Manipulation')
+        ManipCondition = [ManipCondition; data{i, 2:3}]; 
+    else 
+        ControlCondition = [ControlCondition; data{i , 2:3}]; % concat rows vertically
+    end
+end
+
+% Organize Manipulation Condition Values
+SortedManip_Ate = sort(ManipCondition(:, 1));
+SortedManip_Drank = sort(ManipCondition(:,2));
+% Organize Control Condition Values
+SortedContr_Ate = sort(ControlCondition(:,1));
+SortedContr_Drank = sort(ControlCondition(:, 2));
+
+%Cellary Salad
+AteDrank_Manip = {SortedManip_Ate, SortedManip_Drank};
+AteDrank_Control = {SortedContr_Ate, SortedContr_Drank};
+
+
+%Initialize meanDrinking Matrix
+meanDrinking = zeros(2,2);
+
+
+
+
