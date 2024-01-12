@@ -29,6 +29,8 @@ AteDrank_Control = {SortedContr_Ate, SortedContr_Drank};
 %Initialize meanDrinking Matrix
 meanDrinking = zeros(2,2);
 
+%blop
+
 
 
 
