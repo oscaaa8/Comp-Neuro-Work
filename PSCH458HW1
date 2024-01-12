@@ -1,4 +1,5 @@
-load '_Lecture_1_Homework_Data (1).mat'
+
+load '_Lecture_1_Homework_Data.mat'
 splitval = 4;
 
 %disp(data(1,2:3));
@@ -25,10 +26,37 @@ SortedContr_Drank = sort(ControlCondition(:, 2));
 AteDrank_Manip = {SortedManip_Ate, SortedManip_Drank};
 AteDrank_Control = {SortedContr_Ate, SortedContr_Drank};
 
+Manip_MedianVal = median(AteDrank_Manip{1});
+Control_MedianVal = median(AteDrank_Control{1});
 
-%Initialize meanDrinking Matrix
-meanDrinking = zeros(2,2);
 
+% Manip_MedianVal = median(AteDrank_Manip(1,1)); % Median
+% Control_MedianVal = median(AteDrank_Control(:,1)); % Median
+% %Initialize meanDrinking Matrix
+
+meanDrinking = cell(2,2);
+meanDrinking{1,1} = []; % For the first condition
+meanDrinking{1,2} = []; % For the second condition
+meanDrinking{2,1} = []; % For the third condition
+meanDrinking{2,2} = []; % For the fourth condition
+
+
+for i = 1:size(AteDrank_Control{1})
+    if AteDrank_Control{1}(i) < Control_MedianVal
+        meanDrinking{1,1} = [meanDrinking{1,1}; AteDrank_Control{2}(i)];
+    else
+        meanDrinking{1,2} = [meanDrinking{1,2}; AteDrank_Control{2}(i)];
+    end 
+end
+
+
+for i = 1:size(AteDrank_Manip{1})
+    if AteDrank_Manip{1}(i) < Manip_MedianVal
+        meanDrinking{2,1} = [meanDrinking{2,1}; AteDrank_Manip{2}(i)];
+    else 
+        meanDrinking{2,2} = [meanDrinking{2,2}; AteDrank_Control{2}(i)];
+    end
+end
 
 
 
